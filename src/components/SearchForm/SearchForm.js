@@ -9,7 +9,7 @@ const SearchForm = () => {
             <TextInput placeholder="Search..." />
             <TextInput placeholder="Add new column" />
             <Button>
-                <span className="fa fa-search" />
+             <span className="fa fa-search" />
             </Button>
         </form>
     );
