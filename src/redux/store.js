@@ -1,8 +1,18 @@
-import { createStore } from 'redux';
+import {createStore} from 'redux';
 import initialState from './initialState';
+import ActionTypes from "./actionTypes";
 
 const reducer = (state, action) => {
-    return state;
+    switch (action.type) {
+        case ActionTypes.ADD_COLUMN:
+            return {...state, columns: [...state.columns, action.payload]}
+
+        case ActionTypes.ADD_CARD:
+            return  {...state, cards: [...state.cards, action.payload]}
+
+        default:
+            return state;
+    }
 };
 
 const store = createStore(

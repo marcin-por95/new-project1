@@ -1,27 +1,10 @@
 import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
-import shortid from 'shortid';
 import {useSelector} from "react-redux";
 
 const List = () => {
     const columns = useSelector((state) => state.columns);
-    const setColumns = () => {}
-
-    const addColumn = newColumn => {
-        setColumns([...columns, { id: shortid(), title: newColumn.title, icon: newColumn.icon, cards: [] }]);
-    };
-
-    const addCard = (newCard, columnId) => {
-        const columnsUpdated = columns?.map(column => {
-            if(column.id === columnId)
-                return { ...column, cards: [...column.cards, { id: shortid(), title: newCard.title }]}
-            else
-                return column
-        })
-
-        setColumns(columnsUpdated);
-    };
 
     return (
         <div className={styles.list}>
@@ -37,7 +20,7 @@ const List = () => {
                     />
                 ))}
             </section>
-            <ColumnForm action={addColumn} />
+            <ColumnForm />
         </div>
     );
 };
