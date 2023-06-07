@@ -5,13 +5,24 @@ import CardForm from "../CardForm/CardForm";
 import {useSelector} from "react-redux";
 
 const Column = ({icon, id, title}) => {
-    const cards = useSelector(state => state.cards.filter(card => card.columnId === id));
+    const searchString = useSelector((state) => state.searchString);
+    const cards = useSelector((state) =>
+        state.cards.filter(
+            (card) =>
+                card.columnId === id &&
+                card.title.toLowerCase().includes(searchString.toLowerCase())
+        )
+    );
+
+
 
     return (
         <article className={styles.column}>
             <h2 className={styles.title}><span className={styles.icon + ' fa fa-' + icon}/>{title}</h2>
             <ul className={styles.cards}>
-                {cards.map(card => <Card key={card.id} title={card.title}/>)}
+                {cards.map((card) => (
+                    <Card key={card.id} title={card.title}/>
+                ))}
             </ul>
             <CardForm columnId={id}/>
         </article>

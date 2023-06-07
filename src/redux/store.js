@@ -10,6 +10,9 @@ const reducer = (state, action) => {
         case ActionTypes.ADD_CARD:
             return  {...state, cards: [...state.cards, action.payload]}
 
+        case ActionTypes.SEARCH_STRING:
+            return  {...state, searchString: action.payload};
+
         default:
             return state;
     }
