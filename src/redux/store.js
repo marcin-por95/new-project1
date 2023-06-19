@@ -1,29 +1,31 @@
-import {createStore} from 'redux';
+import { createStore } from 'redux';
 import initialState from './initialState';
-import ActionTypes from "./actionTypes";
-import strContains from "../utils/strContains";
+import ActionTypes from './actionTypes';
+import strContains from '../utils/strContains';
 
+export const getColumnsByList = (state, listId) =>
+    state.columns.filter(column => column.listId === listId);
 
-export const getFilteredCards = ({ cards, searchString }, columnId) => cards
-    .filter(card => card.columnId === columnId && strContains(card.title, searchString));
+export const getAllLists = state => state.lists;
 
-export const getAllColumns = (state => state.columns);
-export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
+export const getFilteredCards = (state, columnId) =>
+    state.cards.filter(card => card.columnId === columnId && strContains(card.title, state.searchString));
 
-const reducer = (state, action) => {
+export const updateSearchString = payload => ({ type: ActionTypes.UPDATE_SEARCH, payload });
+
+export const getListById = (state, listId) =>
+    state.lists.find(list => list.id === listId);
+
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.ADD_COLUMN:
-            return {...state, columns: [...state.columns, action.payload]}
+            return { ...state, columns: [...state.columns, action.payload] };
 
         case ActionTypes.ADD_CARD:
-            return  {...state, cards: [...state.cards, action.payload]}
-
-        case ActionTypes.SEARCH_STRING:
-            return  {...state, searchString: action.payload};
-
+            return { ...state, cards: [...state.cards, action.payload] };
 
         case ActionTypes.UPDATE_SEARCH:
-            return {...state, searchString: action.payload};
+            return { ...state, searchString: action.payload };
 
         default:
             return state;
@@ -32,7 +34,6 @@ const reducer = (state, action) => {
 
 const store = createStore(
     reducer,
-    initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
