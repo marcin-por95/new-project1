@@ -3,6 +3,8 @@ import initialState from './initialState';
 import ActionTypes from './actionTypes';
 import strContains from '../utils/strContains';
 
+
+
 export const getColumnsByList = (state, listId) =>
     state.columns.filter(column => column.listId === listId);
 

@@ -5,14 +5,14 @@ import TextInput from '../TextInput/TextInput';
 import { addColumnAction } from '../../redux/actions';
 import styles from './ColumnForm.module.scss';
 
-const ColumnForm = ({ listId }) => {
+const ColumnForm = ({listId}) => {
     const [title, setTitle] = useState('');
     const [icon, setIcon] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addColumnAction({ title, icon, listId }));
+        dispatch(addColumnAction({ title, icon, listId: listId }));
         setTitle('');
         setIcon('');
     };
