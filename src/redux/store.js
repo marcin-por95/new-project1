@@ -1,9 +1,8 @@
+// store.js
 import { createStore } from 'redux';
 import initialState from './initialState';
 import ActionTypes from './actionTypes';
 import strContains from '../utils/strContains';
-
-
 
 export const getColumnsByList = (state, listId) =>
     state.columns.filter(column => column.listId === listId);
@@ -12,8 +11,6 @@ export const getAllLists = state => state.lists;
 
 export const getFilteredCards = (state, columnId) =>
     state.cards.filter(card => card.columnId === columnId && strContains(card.title, state.searchString));
-
-export const updateSearchString = payload => ({ type: ActionTypes.UPDATE_SEARCH, payload });
 
 export const getListById = (state, listId) =>
     state.lists.find(list => list.id === listId);
@@ -31,6 +28,9 @@ const reducer = (state = initialState, action) => {
 
         default:
             return state;
+
+        case ActionTypes.ADD_LIST:
+            return  { ...state, lists: [...state.lists, {...action.payload }]};
     }
 };
 

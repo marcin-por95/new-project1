@@ -5,12 +5,12 @@ import TextInput from './../TextInput/TextInput';
 import {useDispatch} from "react-redux";
 import {addCardAction} from '../../redux/actions';
 
-const CardForm = ({columnId}) => {
+const CardForm = ({columnId, listId}) => {
     const [title, setTitle] = useState('');
     const dispatch = useDispatch();
     const handleSubmit = e => {
         e.preventDefault();
-        dispatch(addCardAction({title, columnId}));
+        dispatch(addCardAction({title, columnId, listId: listId}));
         setTitle('');
     };
 

@@ -12,7 +12,7 @@ const ColumnForm = ({listId}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addColumnAction({ title, icon, listId: listId }));
+        dispatch(addColumnAction({ title, icon, listId }));
         setTitle('');
         setIcon('');
     };

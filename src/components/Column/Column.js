@@ -2,11 +2,11 @@ import styles from './Column.module.scss';
 import Card from "../Card/Card";
 import { getFilteredCards } from '../../redux/store';
 import CardForm from "../CardForm/CardForm";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
-const Column = ({icon, id, title}) => {
+const Column = ({ icon, id, title, listId }) => {
     const cards = useSelector(state => getFilteredCards(state, id));
-    console.log('Column render');
+    console.log('listId:', listId);
     return (
         <article className={styles.column}>
             <h2 className={styles.title}><span className={styles.icon + ' fa fa-' + icon}/>{title}</h2>
@@ -15,7 +15,7 @@ const Column = ({icon, id, title}) => {
                     <Card key={card.id} title={card.title}/>
                 ))}
             </ul>
-            <CardForm columnId={id}/>
+            <CardForm columnId={id} listId={listId} />
         </article>
     );
 };
