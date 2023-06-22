@@ -1,4 +1,3 @@
-// actions.js
 import ActionTypes from './actionTypes';
 
 export const addCardAction = ({ title, columnId, listId }) => ({
@@ -15,7 +14,13 @@ export const updateSearchString = payload => ({
     type: ActionTypes.UPDATE_SEARCH,
     payload
 });
+
 export const addList = payload => ({
-    type: 'ADD_LIST',
+    type: ActionTypes.ADD_LIST,
+    payload
+});
+
+export const toggleCardFavorite = payload => ({
+    type: ActionTypes.TOGGLE_CARD_FAVORITE,
     payload
 });

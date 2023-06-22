@@ -1,4 +1,3 @@
-// store.js
 import { createStore } from 'redux';
 import initialState from './initialState';
 import ActionTypes from './actionTypes';
@@ -15,6 +14,8 @@ export const getFilteredCards = (state, columnId) =>
 export const getListById = (state, listId) =>
     state.lists.find(list => list.id === listId);
 
+export const getFavorite = state => state.cards.filter(card => card.isFavorite);
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionTypes.ADD_COLUMN:
@@ -26,11 +27,19 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.UPDATE_SEARCH:
             return { ...state, searchString: action.payload };
 
+        case ActionTypes.ADD_LIST:
+            return { ...state, lists: [...state.lists, { ...action.payload }] };
+
+        case ActionTypes.TOGGLE_CARD_FAVORITE:
+            return {
+                ...state,
+                cards: state.cards.map(card =>
+                    card.id === action.payload ? { ...card, isFavorite: !card.isFavorite } : card
+                )
+            };
+
         default:
             return state;
-
-        case ActionTypes.ADD_LIST:
-            return  { ...state, lists: [...state.lists, {...action.payload }]};
     }
 };
 
