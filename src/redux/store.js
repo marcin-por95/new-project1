@@ -26,7 +26,6 @@ const reducer = (state = initialState, action) => {
 
         case ActionTypes.UPDATE_SEARCH:
             return { ...state, searchString: action.payload };
-
         case ActionTypes.ADD_LIST:
             return { ...state, lists: [...state.lists, { ...action.payload }] };
 
