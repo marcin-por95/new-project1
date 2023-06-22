@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import Button from '../Button/Button';
 import TextInput from '../TextInput/TextInput';
-import {addColumnAction} from '../../redux/actions';
 import styles from './ColumnForm.module.scss';
+import { addColumnAction } from '../../redux/columnsRedux';
 
 const ColumnForm = ({listId, isFavorite}) => {
     const [title, setTitle] = useState('');

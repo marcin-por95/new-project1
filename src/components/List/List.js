@@ -1,11 +1,11 @@
 import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
-import {useSelector} from "react-redux";
-import {getColumnsByList, getListById} from "../../redux/store";
 import SearchForm from "../SearchForm/SearchForm";
 import {Navigate, useParams} from "react-router-dom";
-
+import { getColumnsByList } from '../../redux/columnsRedux';
+import { getListById } from '../../redux/listsRedux';
+import {useSelector} from "react-redux";
 const List = () => {
     const {listId} = useParams();
     const columns = useSelector(state => getColumnsByList(state, listId));
